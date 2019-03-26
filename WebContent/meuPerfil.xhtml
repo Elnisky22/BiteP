@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      lang = "pt-br">
+
+	<h:head>
+		<title>BiteP - Meu Perfil</title>
+		
+		<!-- CSS da Página -->
+		<link rel="stylesheet" type="text/css" href="resources/css/meuPerfil.css"/>
+			
+	</h:head>
+	
+	<h:body>
+		
+		<!--                                CONTEÚDO DA PÁGINA                                -->
+		<div class="w3-main">
+			<div class="flex-wrap" style="margin-top:50px">
+				<h:form id="formPerfil">
+					<fieldset form="formPerfil">
+					<legend>Meu Perfil</legend>
+						<br/>
+						<i class="fa fa-user-cog" style="font-size:4em"/>
+						<br/><br/>						
+						<p><i class="fa fa-address-card"/><label> Nome:</label><br/>
+						<h:outputText id="nomePerfil" value="#{usuario.user.nome}"/></p>
+				
+						<p><i class="fa fa-at"/><label> Email:</label><br/>
+						<h:outputText id="emailPerfil" value="#{usuario.user.email}"/></p>
+				
+						<p><i class="fa fa-mobile-alt"/><label> Telefone:</label><br/>
+						<h:outputText id="telPerfil" value="#{usuario.user.telefone}"/></p>
+						
+						<p><i class="fa fa-home"/><label> Cidade:</label><br/>
+						<h:outputText id="cidadePerfil" value="#{usuario.user.cidade.nome}"/></p>
+					
+						<hr/>
+						<h:panelGrid columns="2">
+							<a href="#" onclick="carregar('editarPerfil.faces')" class="btnCustoms" style="margin-left:10px"><i class="fa fa-pencil-alt"/> Editar Perfil</a>
+							<h:commandLink class="btnCustoms" name="btnExcluir" action="#{usuario.excluirConta()}"><i class="fa fa-times"/> Excluir</h:commandLink>
+						</h:panelGrid>
+					</fieldset>
+				</h:form>
+			</div>
+		<!--              FIM CONTEÚDO PÁGINA               -->
+		</div>
+	
+	</h:body>
+</html>

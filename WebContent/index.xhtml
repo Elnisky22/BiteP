@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui"
+      lang = "pt-br">
+
+	<h:head>
+		<title>BiteP - Sistema de Adoção de Pets</title>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		
+		<!-- CSS Padrão -->
+		<link rel="stylesheet" type="text/css" href="resources/css/w3.css"/>
+		<link rel="stylesheet" type="text/css" href="resources/css/util.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
+		
+		<!-- Script Padrão -->
+		<script src="resources/scripts/util.js"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"/>
+		<script src="resources/scripts/jquery.mask.js"/>
+		<script type="text/javascript">
+			function start(){
+				$("#content").load('#{usuario.proxPagina}');
+			}
+			window.onload = start;
+		</script>
+	</h:head>
+	
+	<h:body>
+	
+		<!--                      SIDEBAR                -->
+		<nav id="mySidebar" class="w3-sidebar w3-collapse w3-top">
+			<div class="w3-container w3-display-container w3-padding-16">
+				<i onclick="w3_close()"	class="fa fa-remove w3-hide-large w3-button w3-transparent w3-display-topright"/>
+				<h:form>
+					<h:commandLink id="homeImg" action="#{petBean.carregarHome()}" style="margin-left: 35px">
+						<img src="resources/images/logobitep.png" style="width:150px" alt="Ocorreu um erro ao carregar a imagem."/>
+					</h:commandLink><br/>
+				</h:form>
+				
+				<h:panelGroup layout="block" rendered="#{!usuario.logado}">
+					<p><h:outputText value="Olá, visitante!"/></p>
+					<p><h:outputText value="Entre ou cadastre-se para poder doar seus pets!"/></p>
+					<a href="#" onclick="carregar('entrarCadastrar.faces')" class="sidebarButton fill" style="width:226px"><i class="fa fa-sign-in-alt" style="margin-left:-87px"/> Entrar/Cadastrar</a>
+				</h:panelGroup>
+				
+				<h:panelGroup layout="block" rendered="#{usuario.logado}">
+					<p><h:outputText value="Bem vindo, #{usuario.user.nome}! =)"/></p>
+					
+					<hr/>
+					<h:form>
+						<h:commandLink action="#{petBean.iniciarPaginaCadastro()}" class="sidebarButton fill" style="width:226px">
+							<i class="fa fa-plus" style="margin-left:-110px"/> Cadastrar Pet
+						</h:commandLink><br/>
+					</h:form>
+					<hr/>
+			    	<a href="#" onclick="carregar('meuPerfil.faces')" class="sidebarButton fill" style="width:226px"><i class="fa fa-user" style="margin-left:-138px"/> Meu perfil</a><br/>
+				    <h:form>
+				    	<h:commandLink action="#{petBean.carregarMeusPets()}" styleClass="sidebarButton fill" style="width:226px">
+				    		<i class="fa fa-paw" style="margin-left:-134px"/> Meus Pets
+				    	</h:commandLink>
+				    </h:form>
+			    </h:panelGroup>
+			    	
+		    	<hr/>
+				<p><button type="button" id="btnSearch" class="btnCustoms" onclick="openBusca()"><i class="fa fa-search"/> Buscar Pet</button></p>
+				
+				<div id="buscaPet" style="display:none">
+					<h:form>
+						<input type="text" maxlength="40" placeholder="Nome do Pet" jsf:value="#{busca.nome}" onkeypress="return validarNaoNumero(event)"/><br/>
+						
+						<br/><label style="font-weight:bold"><i class="fa fa-dna"></i> Espécie</label><br/>
+						<label for="ckbDog">Cachorro </label><input type="checkbox" id="ckbDog" name="isDog" jsf:value="#{busca.bDog}"/>
+						<h:outputText value="  "/>
+						<input type="checkbox" id="ckbCat" name="isCat" jsf:value="#{busca.bCat}"/><label for="ckbCat"> Gato</label>
+						<br/>
+						<br/><label style="font-weight:bold"><i class="fa fa-venus-mars"></i> Gênero</label><br/>
+						<label for="ckbMacho">Macho </label><input type="checkbox" id="ckbMacho" name="isM" jsf:value="#{busca.bMasc}"/>
+						<h:outputText value="  "/>
+						<input type="checkbox" id="ckbFemea" name="isF" jsf:value="#{busca.bFem}"/><label for="ckbFemea"> Fêmea</label>
+						<br/><br/>
+						<input type="text" maxlength="40" placeholder="Raça do Pet" jsf:value="#{busca.raca}" onkeypress="return validarNaoNumero(event)"/>
+						
+						<p><h:commandLink class="btnCustoms" name="btnBuscar" action="#{busca.buscarPet()}"><i class="fa fa-search"/> Buscar</h:commandLink></p>
+					</h:form>
+				</div>
+				<hr/>	
+				
+				<h:panelGroup layout="block" rendered="#{usuario.logado}">
+					<h:form>
+						<h:commandLink class="sidebarButton fill" name="btnLogout" action="#{usuario.logout()}" style="width:200px"><i class="fa fa-sign-out-alt" style="margin-left:-87px"/> Desconectar</h:commandLink>
+					</h:form>
+				</h:panelGroup>
+			</div>
+		</nav>
+		
+		<!--                      MENU NO TOPO EM TELAS PEQUENAS                    -->
+		<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+		  	<a href="javascript:void(0)" class="w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"/> Menu</a>
+		  	<img src="resources/images/logobitep.png" id="imgLogo" width="60px" alt="Ocorreu um erro ao carregar a imagem."/>
+		</header>
+		
+		<!--                 EFEITO DE OVERLAY COM A SIDEBAR ABERTA EM TELAS PEQUENAS         -->
+		<div id="myOverlay" class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="fechar menu lateral"></div>
+	
+		<!--                  AJUSTAR CONTEÚDO EM TELAS PEQUENAS                        -->
+		<div class="w3-hide-large" style="margin-top:80px"/>
+	
+		<!--                  CONTEÚDO DA PÁGINA                         -->
+		<div id="content" class="w3-main" style="margin-left:260px"/>
+		
+		<!--                 FOOTER                       -->
+		<footer class="w3-hide-small w3-container w3-padding-16" style="margin-left:260px">
+			<hr/>
+			<p>Feito com <i class="fa fa-heart"/> e <i class="fa fa-coffee"/> por © Pinguim tem Joelho, 2018</p>
+			<p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a>, 
+			<a href="https://codepen.io/IanHazelton/details/bgwEPa/" target="_blank" class="w3-hover-text-green">Ian Hazelton</a>, 
+			<a href="http://igorescobar.github.io/jQuery-Mask-Plugin/" target="_blank" class="w3-hover-text-green">Igor Escobar</a>, 
+			<a href="https://www.primefaces.org/" target="_blank" class="w3-hover-text-green">Primefaces</a></p>
+		</footer>
+	
+	</h:body>
+</html>

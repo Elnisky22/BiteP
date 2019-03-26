@@ -1,0 +1,73 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      lang = "pt-br">
+
+	<h:head>
+		<title>BiteP - Editar Perfil</title>
+		
+		<!-- CSS da Página -->
+		<link rel="stylesheet" type="text/css" href="resources/css/editarPerfil.css"/>
+	</h:head>
+	
+	<h:body>
+		
+		<!--                                CONTEÚDO DA PÁGINA                                -->
+		<div class="w3-main">
+			<div class="flex-wrap" style="margin-top:50px">
+				<h:form id="formPerfil">
+					<fieldset form="formPerfil">
+					<legend>Editar Perfil</legend>
+						<i class="fa fa-user-cog" style="font-size:4em"/>
+						<br/><br/>
+						<p><label><i class="fa fa-address-card"/> </label>
+						<input type="text" title="Novo Nome de Usuário" placeholder="Novo Nome" maxlength="40" size="30"
+						onkeypress="return validarNaoNumero(event)" jsf:value="#{usuario.user.nome}"/></p>
+				
+						<p><label><i class="fa fa-at"/> </label>
+						<input type="text" title="Novo Email de Usuário" placeholder="Novo Email" maxlength="255" size="30"
+						jsf:value="#{usuario.user.email}"/></p>
+						
+						<p><label><i class="fa fa-mobile-alt"/> </label>
+						<input type="tel" title="Novo Número de Telefone" placeholder="Novo Telefone" maxlength="15" size="30"
+						class="tel-mask" jsf:value="#{usuario.user.telefone}"/></p>
+						
+						<p><label><i class="fa fa-life-ring"/> </label>
+						<h:selectOneMenu id="selEstado" value="#{usuario.user.cidade.estado.id}">
+							<f:selectItem itemValue="#{null}" itemLabel="Selecionar Estado"/>
+							<f:selectItems value="#{form.estados}" var="p" itemValue = "#{p.id}" itemLabel = "#{p.nome}"/>
+							<f:ajax listener="#{form.carregarCidades}" render="selCidade" />
+						</h:selectOneMenu></p>
+						
+						<p><label><i class="fa fa-home"/> </label>
+						<h:selectOneMenu id ="selCidade" value="#{usuario.user.cidade.id}">
+							<f:selectItem itemValue="#{null}" itemLabel="Selecionar Cidade" />
+							<f:selectItems value="#{form.cidades}" var="c" itemValue="#{c.id}" itemLabel="#{c.nome}" />
+						</h:selectOneMenu></p>
+						
+						<h:panelGrid columns="2">
+							<button type="submit" id="btnEnviar" form="formPerfil" class="btnCustoms" 
+							style="margin-left:15px" jsf:action ="#{usuario.atualizarInformacoes()}">
+								<i class="fa fa-check"/> OK
+							</button>
+							<button type="submit" id="btnCancelar" form="formPerfil" class="btnCustoms" 
+							style="margin-left:15px" jsf:action ="#{usuario.cancelarAtualizarInfos()}">
+								<i class="fa fa-times"/> Cancelar
+							</button>							
+						</h:panelGrid>					
+					</fieldset>
+					<br/>
+				</h:form>
+			</div>
+		<!--              FIM CONTEÚDO PÁGINA               -->
+		</div>
+	
+		<script>
+			$(document).ready(function(){
+				  $('.tel-mask').mask('(99) 99999-9999');
+			});
+		</script>
+	</h:body>
+</html>

@@ -1,0 +1,14 @@
+/*                                             INÍCIO POR ID           */
+#formPerfil{
+ 	float: center;
+}
+ /*                                             FIM POR ID             */
+
+/*                                         INÍCIO POR CLASSE          */
+/*                                          FIM POR CLASSE            */
+
+/*                                          INÍCIO POR TAG            */
+select {
+  width: 225px;
+}
+/*                                           FIM POR TAG             */

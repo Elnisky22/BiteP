@@ -1,0 +1,193 @@
+/*                                             INÍCIO POR ID           */
+#mySidebar {
+	background-color: #bcf6ea;
+	position: fixed;
+	width: 260px;
+	z-index:3;
+}
+
+#imgLogo{
+	display:block;
+	margin:auto;
+	max-width:100%;
+}
+/*                                             FIM POR ID             */
+
+/*                                         INÍCIO POR CLASSE          */
+.btnCustoms {
+	background-color: #16a085;
+	border: none;
+	border-radius: 7px;
+	color: inherit;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: 8px 16px;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.fa-coffee {
+	color: brown;
+}
+
+.fa-heart {
+	color: red;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background-color: #66ccff;
+  bottom: 0;
+  left: 0;
+  right: 100%;
+  top: 0;
+  z-index: -1;
+  -webkit-transition: right 0.15s ease-in;
+}
+
+.fill:hover:before {
+  right: 0;
+}
+
+.fill:hover {
+	font-weight: bold;
+}
+
+
+.flex-wrap {
+	align-items: center;
+  	display: flex;
+  	flex-wrap: wrap;
+  	justify-content: center;
+  	text-align: center;
+}
+
+/* TAGS DE SOBREPOSIÇÃO DO PRIMEFACES*/
+html .ui-widget-content a {
+	background-color: #bcf6ea;
+	border-radius: 4px;
+	color: #000000;
+	text-decoration: none;
+}
+
+html .ui-widget {
+	    font-family: "Raleway", Arial, Helvetica, sans-serif;
+}
+
+html .ui-widget-header {
+	background: #bcf6ea;
+	border: 0;
+	color: #000000;
+	text-shadow: none;
+}
+
+html .ui-widget-content {
+	border: 0;
+}
+
+html .ui-state-default, html .ui-widget-content .ui-state-default, html.ui-widget-header .ui-state-default {
+	background-color: #16a085;
+	border: 0;
+	border-radius: 7px;
+}
+/* FIM DAS TAGS DE SOBREPOSIÇÃO DO PRIMEFACES*/
+
+.tel-mask {}
+/*                                          FIM POR CLASSE            */
+
+/*                                          INÍCIO POR TAG            */
+
+a.sidebarButton {
+	background: none;
+	border: none;
+	border-radius: 7px;
+	color: inherit;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	padding: 8px 16px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	vertical-align: middle;
+	white-space: nowrap;
+	z-index: 1;
+	transition:         0.08s ease-in;
+  	-o-transition:      0.08s ease-in;
+  	-ms-transition:     0.08s ease-in;
+  	-moz-transition:    0.08s ease-in;
+  	-webkit-transition: 0.08s ease-in;
+}
+
+article {
+	margin: 0 auto;
+	padding-bottom: 60px;
+	width: 900px;
+}
+
+body {
+	background-color: #e9fcf8;
+	font-family: "Raleway", Arial, Helvetica, sans-serif;
+	margin: 0; /*0 60px; /* altura do footer */
+}
+
+fieldset {
+	background-color: #33cccc;
+	border: 0;
+	border-radius: 7px;
+	margin: 0 2px;
+	padding: .35em .625em .75em;
+	text-align: center;
+}
+
+footer {
+	bottom: 0px;
+	height: 60px;
+	margin-top:32px;
+	position: static;
+	width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Raleway", Arial, Helvetica, sans-serif
+}
+
+html {
+	min-height: 100%;
+	position: relative;
+}
+
+input, select {
+  border: 0;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 1.0rem;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: center;
+}
+input:not([type="submit"]):hover,
+select:hover {
+	box-shadow: 0px 0px 10px #b31aff;
+	font-weight: bold;
+}
+
+legend {
+	background-color: white;
+	border-radius: 7px;
+	box-shadow: -3px -3px;
+	font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+select:hover {
+	cursor: pointer;
+}
+/*                                           FIM POR TAG             */

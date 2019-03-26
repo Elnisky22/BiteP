@@ -1,0 +1,30 @@
+/*                                             INÍCIO POR ID           */
+
+/*                                             FIM POR ID             */
+
+/*                                         INÍCIO POR CLASSE          */
+.imageUpload {
+	opacity: 0;
+	position: absolute;
+	display: none;
+	z-index: -1;
+}
+/*                                          FIM POR CLASSE            */
+
+/*                                          INÍCIO POR TAG            */
+label.img {
+	width: 100px;
+	height: 40px;
+	cursor: pointer; 
+	border-radius: 7px;
+	background-color: #16a085;
+}
+.teste {
+	background-color: red;
+}
+
+textarea {
+	width: 155px;
+	resize: none;
+}
+/*                                           FIM POR TAG             */

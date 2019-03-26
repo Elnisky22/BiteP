@@ -1,0 +1,10 @@
+#slideshow {
+	max-width: 350px;
+	margin: auto;
+}
+
+.mySlides {
+	display: none;
+	max-width: 350px;
+	max-height: 350px;
+}

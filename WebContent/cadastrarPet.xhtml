@@ -1,0 +1,77 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      lang = "pt-br">
+
+	<h:head>
+		<title>BiteP - Cadastrar novo Pet</title>
+		
+		<!-- CSS da Página -->
+		<link rel="stylesheet" type="text/css" href="resources/css/cadastrarPet.css"/>
+		
+		<!-- Script da Página -->
+		<script src="resources/scripts/cadastrarPet.js"/>
+	</h:head>
+	
+	<h:body>
+		<div class="w3-main">
+			
+			<div id="divCadastro" class="flex-wrap" style="margin-top:80px">
+				<h:form id="formCadastro"  enctype="multipart/form-data">
+					<fieldset>
+						<legend>Novo Pet</legend>
+							<p><label><i class="fa fa-address-card"/> </label>
+							<input type="text" maxlength="20" onkeypress="return validarNaoNumero(event)" placeholder="Nome do Pet" required="required" title="Nome do Pet" jsf:value="#{petBean.pet.nome}"/></p>
+							
+							<label><i class="fa fa-dna"/> Espécie:</label>
+							<h:selectOneRadio styleClass="flex-wrap" value="#{petBean.pet.especie}">
+								<f:selectItem itemValue="Cachorro" itemLabel="Cachorro"/>
+								<f:selectItem itemValue="Gato" itemLabel="Gato"/>
+							</h:selectOneRadio>
+							
+							<label><i class="fa fa-venus-mars"/> Gênero:</label>
+							<h:selectOneRadio styleClass="flex-wrap" value="#{petBean.pet.genero}">
+								<f:selectItem itemValue="F" itemLabel="Fêmea"/>
+								<f:selectItem itemValue="M" itemLabel="Macho"/>
+							</h:selectOneRadio>
+							
+							<br/>
+							<label><i class="fa fa-paw"/> </label>
+							<input type="text" maxlength="20" onkeypress="return validarNaoNumero(event)" placeholder="Raça do Pet" required="required" title="Raça do Pet" jsf:value="#{petBean.pet.raca}"/>
+							
+							<p><i class="fa fa-calendar"/><label> Data Nascimento:</label><br/>
+							<input type="date" title="Data de Nascimento" jsf:value="#{petBean.dataNascimento}"/></p>
+							
+							<p><i class="fa fa-sticky-note"/><label> Observações:</label><br/>
+							<textarea class="w3-border inputText" jsf:value = "#{petBean.pet.observacao}" style="border-radius:7px;border:0" cols="18" rows="3" title="Observações" maxlength="200"/></p>
+							
+							<h:panelGrid style="margin-left:10px" columns="2">
+								<h:outputLabel for="img1" styleClass="img btnCustoms">Imagem 1</h:outputLabel>
+								
+								<h:outputLabel for="img2" styleClass="img btnCustoms">Imagem 2</h:outputLabel>
+
+								<h:outputLabel for="img3" styleClass="img btnCustoms">Imagem 3</h:outputLabel>
+
+								<h:outputLabel for="img4" styleClass="img btnCustoms">Imagem 4</h:outputLabel>
+								
+								<h:inputFile name="image1" id="img1" styleClass="imageUpload" value="#{petBean.img1}"/>
+								<h:inputFile name="image2" id="img2" styleClass="imageUpload" value="#{petBean.img2}"/>
+								<h:inputFile name="image3" id="img3" styleClass="imageUpload" value="#{petBean.img3}"/>
+								<h:inputFile name="image4" id="img4" styleClass="imageUpload" value="#{petBean.img4}"/>
+							</h:panelGrid>
+							
+							<hr/>
+							<h:panelGrid class="flex-wrap" columns="2">
+								<h:commandLink styleClass="btnCustoms" name="btnCadastrar" action="#{petBean.cadastrarPet()}"><i class="fa fa-check"/> Cadastrar</h:commandLink>
+								<a href="#" onclick="carregar('home.faces')" class="btnCustoms" style="margin-left:10px"><i class="fa fa-times"/> Cancelar</a>
+							</h:panelGrid>
+					</fieldset>
+				</h:form>
+			</div>
+			
+		<!--              FIM CONTEÚDO PÁGINA               -->
+		</div>
+	</h:body>
+</html>
